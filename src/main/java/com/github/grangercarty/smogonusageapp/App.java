@@ -1,11 +1,14 @@
 package com.github.grangercarty.smogonusageapp;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        String filename = "gen8ou_2022_01.txt";
-        String file = Objects.requireNonNull(App.class.getClassLoader().getResource(filename)).getFile();
-        System.out.println(file);
+        SmogonUseRepo smoUseRepo = new SmogonUseRepo();
+        smoUseRepo.load("gen8ou_2022_01.txt");
+        smoUseRepo.print();
     }
 }
