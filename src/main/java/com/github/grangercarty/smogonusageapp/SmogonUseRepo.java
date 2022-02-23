@@ -21,18 +21,19 @@ public class SmogonUseRepo {
             sc.useDelimiter("\n");
             while (sc.hasNext()) {
                 String smogonUseLine = sc.next();
-                SmogonPokemonUse smoPokeUse = new SmogonPokemonUse(smogonUseLine);
-                usageList.add(smoPokeUse);
+                if (SmogonPokemonUse.isPokemonUse(smogonUseLine)){
+                    SmogonPokemonUse smoPokeUse = new SmogonPokemonUse(smogonUseLine);
+                    usageList.add(smoPokeUse);
+                }
             }
+            sc.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find file path.");
+            System.err.println("Cannot find file path.");
             e.printStackTrace();
         }
     }
 
-    public void print() {
-        for (SmogonPokemonUse pokeUse : usageList) {
-            System.out.println(pokeUse);
-        }
+    public ArrayList<SmogonPokemonUse> getUsageList() {
+        return usageList;
     }
 }
