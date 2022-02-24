@@ -1,7 +1,7 @@
 package com.github.grangercarty.smogonusageapp;
 
 public class SmogonUseService {
-    SmogonUseRepo smoUseRepo;
+    protected SmogonUseRepo smoUseRepo;
 
     public SmogonUseService(SmogonUseRepo smoUseRepo) {
         this.smoUseRepo = smoUseRepo;
@@ -19,5 +19,9 @@ public class SmogonUseService {
                 System.out.println(pokeUse);
             }
         }
+    }
+
+    public SmogonUseRepo getSmoUseRepo() {
+        return smoUseRepo;
     }
 }
