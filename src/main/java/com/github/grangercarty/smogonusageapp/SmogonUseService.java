@@ -23,6 +23,16 @@ public class SmogonUseService {
         currentRepo = updatedRepo;
     }
 
+    public void genMonSmoUse(String name) {
+        SmogonUseRepo updatedRepo = new SmogonUseRepo();
+        for (SmogonPokemonUse pokeUse : currentRepo.getUsageList()) {
+            if (pokeUse.getPokemonName().contains(name)) {
+                updatedRepo.addUse(pokeUse);
+            }
+        }
+        currentRepo = updatedRepo;
+    }
+
     public SmogonUseRepo getCurrentRepo() {
         return currentRepo;
     }
