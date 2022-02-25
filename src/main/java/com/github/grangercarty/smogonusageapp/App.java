@@ -8,13 +8,11 @@ public class App {
         SmogonUseRepo smoUseRepo = new SmogonUseRepo();
         smoUseRepo.load("gen8ou_2022_01.txt");
         SmogonUseService service = new SmogonUseService(smoUseRepo);
-        //service.printAll();
-        //service.printTop(5);
         SmogonUseServlet smoUseServlet = new SmogonUseServlet(service);
         Tomcat server = new Tomcat();
         server.getConnector();
         server.addContext("", null);
-        server.addServlet("", "smoUseServlet", smoUseServlet).addMapping("/all");
+        server.addServlet("", "smoUseServlet", smoUseServlet).addMapping("/smogonUse");
         try {
             server.start();
         } catch (LifecycleException e) {

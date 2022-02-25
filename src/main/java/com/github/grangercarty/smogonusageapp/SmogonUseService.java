@@ -2,26 +2,28 @@ package com.github.grangercarty.smogonusageapp;
 
 public class SmogonUseService {
     protected SmogonUseRepo smoUseRepo;
+    protected SmogonUseRepo currentRepo;
 
     public SmogonUseService(SmogonUseRepo smoUseRepo) {
         this.smoUseRepo = smoUseRepo;
+        resetCurrent();
     }
 
-    public void printAll() {
-        for (SmogonPokemonUse pokeUse : smoUseRepo.getUsageList()) {
-            System.out.println(pokeUse);
-        }
+    public void resetCurrent() {
+        this.currentRepo = smoUseRepo;
     }
 
-    public void printTop(int i) {
-        for (SmogonPokemonUse pokeUse : smoUseRepo.getUsageList()) {
+    public void getTopSmoUse(int i) {
+        SmogonUseRepo updatedRepo = new SmogonUseRepo();
+        for (SmogonPokemonUse pokeUse : currentRepo.getUsageList()) {
             if (pokeUse.getRank() <= i) {
-                System.out.println(pokeUse);
+                updatedRepo.addUse(pokeUse);
             }
         }
+        currentRepo = updatedRepo;
     }
 
-    public SmogonUseRepo getSmoUseRepo() {
-        return smoUseRepo;
+    public SmogonUseRepo getCurrentRepo() {
+        return currentRepo;
     }
 }

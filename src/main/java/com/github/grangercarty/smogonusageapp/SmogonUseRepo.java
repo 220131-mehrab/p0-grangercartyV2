@@ -36,4 +36,8 @@ public class SmogonUseRepo {
     public ArrayList<SmogonPokemonUse> getUsageList() {
         return usageList;
     }
+
+    public void addUse(SmogonPokemonUse pokeUse) {
+        usageList.add(pokeUse);
+    }
 }

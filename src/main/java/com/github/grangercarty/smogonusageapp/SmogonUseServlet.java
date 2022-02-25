@@ -15,7 +15,12 @@ public class SmogonUseServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        for (SmogonPokemonUse pokeUse : smoUseservice.getSmoUseRepo().getUsageList()) {
+        String userInput = req.getParameter("findTop");
+        smoUseservice.resetCurrent();
+        if ( userInput != null && userInput.matches("\\d+")) {
+            smoUseservice.getTopSmoUse(Integer.parseInt(userInput));
+        }
+        for (SmogonPokemonUse pokeUse : smoUseservice.getCurrentRepo().getUsageList()) {
             resp.getWriter().println(pokeUse);
         }
     }
