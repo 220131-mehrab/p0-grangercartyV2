@@ -24,6 +24,10 @@ public class SmogonPokemonUse {
         return (rank + "," + pokemonName + "," + usageRate);
     }
 
+    public String toHTMLTableRow() {
+        return ("<tr><td>"+rank+"</td><td>"+pokemonName+"</td><td>"+usageRate+"</td></tr>\n");
+    }
+
     public int getRank() {
         return rank;
     }

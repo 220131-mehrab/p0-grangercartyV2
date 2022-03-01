@@ -26,7 +26,7 @@ public class SmogonUseService {
     public void genMonSmoUse(String name) {
         SmogonUseRepo updatedRepo = new SmogonUseRepo();
         for (SmogonPokemonUse pokeUse : currentRepo.getUsageList()) {
-            if (pokeUse.getPokemonName().contains(name)) {
+            if (pokeUse.getPokemonName().toLowerCase().contains(name.toLowerCase())) {
                 updatedRepo.addUse(pokeUse);
             }
         }
@@ -35,5 +35,18 @@ public class SmogonUseService {
 
     public SmogonUseRepo getCurrentRepo() {
         return currentRepo;
+    }
+
+    public static String getHTMLSearchForm() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<h1>New Smogon Use Search</h1>\n");
+        stringBuilder.append("<form action='smogonUse' method='get'>\n");
+        stringBuilder.append("<label for='topNum'>Ranked in top:</label><br>\n");
+        stringBuilder.append("<input type='text' id='topNum' name='getTop'><br>\n");
+        stringBuilder.append("<label for='name'>Pokemon name contains:</label><br>\n");
+        stringBuilder.append("<input type='text' id='name' name='getName'><br>\n");
+        stringBuilder.append("<input type='submit' value='I CHOOSE YOU'><br>\n");
+        stringBuilder.append("</form>\n");
+        return stringBuilder.toString();
     }
 }

@@ -23,7 +23,7 @@ public class SmogonUseRepo {
                 String smogonUseLine = sc.next();
                 if (SmogonPokemonUse.isPokemonUse(smogonUseLine)){
                     SmogonPokemonUse smoPokeUse = new SmogonPokemonUse(smogonUseLine);
-                    usageList.add(smoPokeUse);
+                    addUse(smoPokeUse);
                 }
             }
             sc.close();
@@ -39,5 +39,16 @@ public class SmogonUseRepo {
 
     public void addUse(SmogonPokemonUse pokeUse) {
         usageList.add(pokeUse);
+    }
+
+    public String getUsageListAsHTMLTable() {
+        StringBuilder HTMLTable = new StringBuilder();
+        HTMLTable.append("<table>\n");
+        HTMLTable.append("<tr><th>Rank</th><th>Pokemon Name</th><th>Usage%</th></tr>\n");
+        for (SmogonPokemonUse pokeUse : usageList) {
+            HTMLTable.append(pokeUse.toHTMLTableRow());
+        }
+        HTMLTable.append("</table>\n");
+        return HTMLTable.toString();
     }
 }

@@ -7,25 +7,25 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SmogonUseServlet extends HttpServlet {
-    SmogonUseService smoUseservice;
+    SmogonUseService smoUseService;
 
     public SmogonUseServlet(SmogonUseService service) {
-        this.smoUseservice = service;
+        this.smoUseService = service;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String userInput1 = req.getParameter("findTop");
-        String userInput2 = req.getParameter("findName");
-        smoUseservice.resetCurrent();
+        String userInput1 = req.getParameter("getTop");
+        String userInput2 = req.getParameter("getName");
+        smoUseService.resetCurrent();
+        resp.getWriter().println(SmogonUseService.getHTMLSearchForm());
+
         if ( userInput1 != null && userInput1.matches("\\d+")) {
-            smoUseservice.getTopSmoUse(Integer.parseInt(userInput1));
+            smoUseService.getTopSmoUse(Integer.parseInt(userInput1));
         }
         if ( userInput2 != null) {
-            smoUseservice.genMonSmoUse(userInput2);
+            smoUseService.genMonSmoUse(userInput2);
         }
-        for (SmogonPokemonUse pokeUse : smoUseservice.getCurrentRepo().getUsageList()) {
-            resp.getWriter().println(pokeUse);
-        }
+        resp.getWriter().print(smoUseService.getCurrentRepo().getUsageListAsHTMLTable());
     }
 }
