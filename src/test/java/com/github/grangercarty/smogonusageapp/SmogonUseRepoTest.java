@@ -3,8 +3,14 @@ package com.github.grangercarty.smogonusageapp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * A Class that tests the SmogonUseRepo class.
+ */
 public class SmogonUseRepoTest {
 
+    /**
+     * A test that ensures that a SmogonUseRepo is being set up properly.
+     */
     @Test
     public void constructorAndGetterTest() {
         SmogonUseRepo testRepo = new SmogonUseRepo();

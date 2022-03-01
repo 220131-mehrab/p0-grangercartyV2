@@ -9,10 +9,17 @@ import java.util.Scanner;
 public class SmogonUseRepo {
     public ArrayList<SmogonPokemonUse> usageList;
 
+    /**
+     * Creates an empty SmogonUseRepo.
+     */
     public SmogonUseRepo() {
         usageList = new ArrayList<>();
     }
 
+    /**
+     * Loads a file into the SmogonUseRepo
+     * @param fileName - The name of the file
+     */
     public void load(String fileName) {
         String filePath = Objects.requireNonNull(App.class.getClassLoader().getResource(fileName)).getFile();
         File file = new File(filePath);
@@ -33,14 +40,26 @@ public class SmogonUseRepo {
         }
     }
 
+    /**
+     * A getter for the usageList
+     * @return The usageList of SmogonPokemonUse
+     */
     public ArrayList<SmogonPokemonUse> getUsageList() {
         return usageList;
     }
 
+    /**
+     * Adds a SmogonPokemonUse to the usageList.
+     * @param pokeUse - A string containing usage data for a Pokemon in a metagame
+     */
     public void addUse(SmogonPokemonUse pokeUse) {
         usageList.add(pokeUse);
     }
 
+    /**
+     * Gets the usageList as an HTML Table
+     * @return A string that represents an HTML table
+     */
     public String getUsageListAsHTMLTable() {
         StringBuilder HTMLTable = new StringBuilder();
         HTMLTable.append("<table>\n");
